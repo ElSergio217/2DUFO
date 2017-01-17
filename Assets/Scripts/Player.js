@@ -2,9 +2,10 @@
 
 var speed:float;
 var bullet:GameObject;
+var AI:GameObject;
 
 function Start () {
-	Time.timeScale = 0;
+	spawn();
 }
 
 function Update () {
@@ -27,3 +28,16 @@ function Update () {
 		transform.position.x = -8;
 	}
 }
+
+function OnTriggerEnter(other:Collider){
+	if(other.tag == "AI"){
+		Destroy(gameObject);
+		Time.timeScale = 0;
+	}
+}
+
+function spawn(){
+	yield WaitForSeconds(1);
+	Instantiate(AI);
+}
+
